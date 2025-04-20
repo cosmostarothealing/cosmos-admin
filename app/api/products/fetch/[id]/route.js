@@ -1,9 +1,9 @@
 import { dbConnect } from '../../../../utils/mongoose';
-import Product from '../../../../models/product';
+import OtherProduct from '../../../../models/otherProduct'; // changed model import
 import { NextResponse } from 'next/server';
 
 export async function GET(req, context) {
-    const { params } = context; // Awaiting params is not needed in App Router
+    const { params } = context;
     const id = params?.id;
 
     if (!id) {
@@ -12,14 +12,13 @@ export async function GET(req, context) {
 
     const authKey = req.headers.get("x-api-key");
 
-    // Secure API Key Verification
-    if (!authKey || authKey !== process.env.NEXT_PUBLIC_API_KEY) { 
+    if (!authKey || authKey !== process.env.NEXT_PUBLIC_API_KEY) {
         return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
     try {
         await dbConnect();
-        const product = await Product.findById(id);
+        const product = await OtherProduct.findById(id); // updated model call
 
         if (!product) {
             return NextResponse.json({ message: 'Product not found' }, { status: 404 });

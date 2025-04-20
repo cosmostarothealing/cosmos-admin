@@ -42,7 +42,7 @@ export default function ProductsPage() {
         {/* Page Header */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold text-gray-800 tracking-wide">
-            Our Products
+            Other Products
           </h1>
           <button
             onClick={() => router.push("/products/add")}
@@ -87,7 +87,7 @@ export default function ProductsPage() {
                       {product.img1 ? (
                         <img
                           src={product.img1}
-                          alt={product.productName}
+                          alt={product.name}
                           className="w-full h-40 object-cover rounded-md mb-4"
                         />
                       ) : (
@@ -98,10 +98,10 @@ export default function ProductsPage() {
 
                       {/* Product Details */}
                       <h2 className="text-xl font-semibold text-gray-800 truncate">
-                        {product.productName}
+                        {product.name}
                       </h2>
                       <p className="text-lg font-bold text-g2 mt-1">
-                        ₹{product.originalPrice?.toLocaleString()}
+                        ₹{product.price?.toLocaleString()}
                       </p>
 
                       {/* View Details Button */}

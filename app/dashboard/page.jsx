@@ -21,7 +21,7 @@ export default function Dashboard() {
       {/* Page Header */}
       <div className="text-center mb-12">
         <h1 className="text-5xl font-extrabold text-g4 mb-2">
-          Erroneous Gold
+        Cosmostarot & Healing
         </h1>
         <p className="text-xl text-black">Admin Dashboard</p>
       </div>
@@ -33,11 +33,11 @@ export default function Dashboard() {
           <div className="flex items-center group bg-g1 p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-105 transform min-h-[250px]">
             <div className="text-center">
               <h2 className="text-3xl font-bold text-g2 mb-4 group-hover:text-g4 transition-colors">
-                Single Name Necklace
+                ADD & MANAGE PRODUCTS
               </h2>
-              <p className="text-gray-600">
+              {/* <p className="text-gray-600">
                 Manage and add new single name necklace products
-              </p>
+              </p> */}
               <h2 className="text-6xl text-g2  group-hover:text-g4 transition-colors">
                +
               </h2>

@@ -37,7 +37,6 @@ export default function ProductDetailPage() {
       fetchProduct();
     }
   }, [id]);
-  
 
   // Update product handler
   const handleUpdate = async (event) => {
@@ -67,7 +66,6 @@ export default function ProductDetailPage() {
     }
   };
 
-
   // Delete product handler
   const handleDelete = async () => {
     try {
@@ -90,7 +88,6 @@ export default function ProductDetailPage() {
     }
   };
 
-
   const handleCancel = () => {
     setShowCancelConfirm(true);
   };
@@ -109,7 +106,6 @@ export default function ProductDetailPage() {
           Product Details
         </h1>
        
-
         <form onSubmit={handleUpdate} className="grid grid-cols-1 gap-6">
           <div>
             <label className="block text-base font-medium text-g4 mb-2">
@@ -117,9 +113,9 @@ export default function ProductDetailPage() {
             </label>
             <input
               type="text"
-              value={product.productName}
+              value={product.name}
               onChange={(e) =>
-                setProduct({ ...product, productName: e.target.value })
+                setProduct({ ...product, name: e.target.value })
               }
               className="w-full px-4 py-3 border border-g2 rounded-lg"
               required
@@ -128,28 +124,33 @@ export default function ProductDetailPage() {
 
           <div>
             <label className="block text-base font-medium text-g4 mb-2">
-              Strikeout Price
+              Product Type
             </label>
-            <input
-              type="number"
-              value={product.strikeoutPrice}
+            <select
+              value={product.productType}
               onChange={(e) =>
-                setProduct({ ...product, strikeoutPrice: e.target.value })
+                setProduct({ ...product, productType: e.target.value })
               }
               className="w-full px-4 py-3 border border-g2 rounded-lg"
               required
-            />
+            >
+              <option value="Tumble Stone">Tumble Stone</option>
+              <option value="Raw Stone">Raw Stone</option>
+              <option value="Reiki Stone">Reiki Stone</option>
+              <option value="Worry Bracelets">Worry Bracelets</option>
+              <option value="Spell Candles">Spell Candles</option>
+            </select>
           </div>
 
           <div>
             <label className="block text-base font-medium text-g4 mb-2">
-              Original Price
+              Price
             </label>
             <input
               type="number"
-              value={product.originalPrice}
+              value={product.price}
               onChange={(e) =>
-                setProduct({ ...product, originalPrice: e.target.value })
+                setProduct({ ...product, price: e.target.value })
               }
               className="w-full px-4 py-3 border border-g2 rounded-lg"
               required
@@ -157,34 +158,33 @@ export default function ProductDetailPage() {
           </div>
 
           {/* Image Inputs */}
-          {["img1", "img2", "img3", "img4"].map((img, index) => (
-  <div key={index} className="mb-6">
-    <label className="block text-base font-medium text-g4 mb-2">
-      Image {index + 1} URL
-    </label>
-    <input
-      type="text"
-      value={product[img] || ""}
-      onChange={(e) =>
-        setProduct({ ...product, [img]: e.target.value })
-      }
-      className="w-full px-4 py-3 border border-g2 rounded-lg"
-      required
-    />
-    
-    {/* Show Image Preview if URL is available */}
-    {product[img] && (
-      <div className="mt-2">
-        <img
-          src={product[img]}
-          alt={`Product Image ${index + 1}`}
-          className="w-auto h-60 object-cover rounded-lg border border-gray-300 shadow-md"
-        />
-      </div>
-    )}
-  </div>
-))}
-
+          {["img1", "img2"].map((img, index) => (
+            <div key={index} className="mb-6">
+              <label className="block text-base font-medium text-g4 mb-2">
+                Image {index + 1} URL
+              </label>
+              <input
+                type="text"
+                value={product[img] || ""}
+                onChange={(e) =>
+                  setProduct({ ...product, [img]: e.target.value })
+                }
+                className="w-full px-4 py-3 border border-g2 rounded-lg"
+                required
+              />
+              
+              {/* Show Image Preview if URL is available */}
+              {product[img] && (
+                <div className="mt-2">
+                  <img
+                    src={product[img]}
+                    alt={`Product Image ${index + 1}`}
+                    className="w-auto h-60 object-cover rounded-lg border border-gray-300 shadow-md"
+                  />
+                </div>
+              )}
+            </div>
+          ))}
 
           <div>
             <label className="block text-base font-medium text-g4 mb-2">
@@ -201,35 +201,6 @@ export default function ProductDetailPage() {
             ></textarea>
           </div>
 
-          <div>
-            <label className="block text-base font-medium text-g4 mb-2">
-              Material
-            </label>
-            <input
-              type="text"
-              value={product.material}
-              onChange={(e) =>
-                setProduct({ ...product, material: e.target.value })
-              }
-              className="w-full px-4 py-3 border border-g2 rounded-lg"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-base font-medium text-g4 mb-2">
-              Font Name
-            </label>
-            <input
-              type="text"
-              value={product.fontName}
-              onChange={(e) =>
-                setProduct({ ...product, fontName: e.target.value })
-              }
-              className="w-full px-4 py-3 border border-g2 rounded-lg"
-              required
-            />
-          </div>
           {error && <p className="text-red-500 text-center mb-4">{error}</p>}
           <div className="flex gap-4">
             <button

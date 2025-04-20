@@ -30,11 +30,11 @@ export default function LoginPage() {
         {/* Logo and Title */}
         <div className="text-center mb-6">
           <img 
-            src="/Logo.svg" 
+            src="/Logo.png" 
             alt="Knottin Daycare Logo" 
             className="w-20 mx-auto mb-3" 
           />
-          <h2 className="text-3xl font-bold text-g2">Erroneous Gold</h2>
+          <h2 className="text-3xl font-bold text-g2">Cosmostarot & Healing</h2>
           <p className="text-xl text-black">Admin Login</p>
         </div>
 

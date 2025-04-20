@@ -5,17 +5,14 @@ import { useRouter } from "next/navigation";
 
 export default function AddProduct() {
   const [formData, setFormData] = useState({
-    productName: "",
-    strikeoutPrice: "",
-    originalPrice: "",
+    type: "", // Dropdown for product types
+    name: "",
+    price: "",
+    description: "",
     img1: "",
     img2: "",
-    img3: "",
-    img4: "",
-    description: "",
-    material: "",
-    fontName: "",
   });
+
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -38,8 +35,8 @@ export default function AddProduct() {
         return;
       }
     }
-    if (isNaN(formData.strikeoutPrice) || isNaN(formData.originalPrice)) {
-      setError("Prices must be valid numbers.");
+    if (isNaN(formData.price)) {
+      setError("Price must be a valid number.");
       return;
     }
 
@@ -74,37 +71,98 @@ export default function AddProduct() {
     <div className="min-h-screen flex items-center justify-center p-4 bg-g3">
       <div className="w-full max-w-2xl bg-g1 p-8 rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold mb-6 text-center">Add New Product</h1>
-       
+
         <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4">
-          {Object.keys(formData).map((key) => (
-            <div key={key}>
-              <label className="block font-medium mb-2">{key.replace(/([A-Z])/g, " $1").trim()}</label>
+          {/* Product Type Dropdown */}
+          <div>
+            <label className="block font-medium mb-2">Product Type</label>
+            <select
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2"
+              required
+            >
+              <option value="">Select Product Type</option>
+              <option value="Tumble stone">Tumble stone</option>
+              <option value="Raw stone">Raw stone</option>
+              <option value="Reiki stone">Reiki stone</option>
+              <option value="Worry bracelets">Worry bracelets</option>
+              <option value="Spell candles">Spell candles</option>
+            </select>
+          </div>
+
+          {/* Product Name Input */}
+          <div>
+            <label className="block font-medium mb-2">Product Name</label>
+            <input
+              type="text"
+              name="name"  // Fixed name to align with the formData structure
+              value={formData.name} // Fixed name to align with the formData structure
+              onChange={handleChange}
+              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2"
+              placeholder="Enter product name"
+              required
+            />
+          </div>
+
+          {/* Price Input */}
+          <div>
+            <label className="block font-medium mb-2">Price</label>
+            <input
+              type="number"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2"
+              placeholder="Enter price"
+              required
+            />
+          </div>
+
+          {/* Description Input */}
+          <div>
+            <label className="block font-medium mb-2">Description</label>
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2"
+              placeholder="Enter product description"
+              required
+            />
+          </div>
+
+          {/* Image Inputs */}
+          {["img1", "img2"].map((imgKey) => (
+            <div key={imgKey}>
+              <label className="block font-medium mb-2">{imgKey.toUpperCase()}</label>
               <input
-                type={key.includes("Price") ? "number" : "text"}
-                name={key}
-                value={formData[key]}
+                type="text"
+                name={imgKey}
+                value={formData[imgKey]}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2"
-                placeholder={`Enter ${key.replace(/([A-Z])/g, " $1").trim()}`}
-                required
+                placeholder={`Enter image URL for ${imgKey}`}
               />
-              
               {/* Show image preview if it's an image URL */}
-              {key.startsWith("img") && formData[key] && (
+              {formData[imgKey] && (
                 <div className="mt-2">
                   <img
-                    src={formData[key]}
-                    alt={`Preview ${key}`}
+                    src={formData[imgKey]}
+                    alt={`Preview ${imgKey}`}
                     className="w-auto h-60 object-cover rounded-lg border border-gray-300 shadow-md"
                   />
                 </div>
               )}
             </div>
           ))}
-          
+
+          {/* Error or Success Messages */}
           {error && <p className="text-red-500 text-center mb-4">{error}</p>}
           {showSuccess && <p className="text-green-500 text-center mb-4">Product added successfully!</p>}
-          
+
+          {/* Submit and Cancel Buttons */}
           <div className="flex gap-4">
             <button
               type="submit"
@@ -124,6 +182,7 @@ export default function AddProduct() {
         </form>
       </div>
 
+      {/* Confirmation Popup for Cancel */}
       {showConfirmation && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg text-center">

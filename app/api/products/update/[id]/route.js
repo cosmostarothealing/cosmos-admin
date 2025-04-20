@@ -1,37 +1,34 @@
 import { dbConnect } from '../../../../utils/mongoose';
-import Product from '../../../../models/product';
+import OtherProduct from '../../../../models/otherProduct'; // updated model
 import { NextResponse } from 'next/server';
 
 export async function PUT(req, { params }) {
-    const { id } = params; // No need for await here
+    const { id } = params;
 
     try {
         await dbConnect();
+
         const { 
-            productName, 
-            strikeoutPrice, 
-            originalPrice, 
-            img1, 
-            img2, 
-            img3, 
-            img4, 
+            type, 
+            name, 
+            price, 
             description, 
-            material, 
-            fontName 
+            img1, 
+            img2 
         } = await req.json();
 
-        const updatedProduct = await Product.findByIdAndUpdate(id, {
-            productName,
-            strikeoutPrice,
-            originalPrice,
-            img1,
-            img2,
-            img3,
-            img4,
-            description,
-            material,
-            fontName,
-        }, { new: true });
+        const updatedProduct = await OtherProduct.findByIdAndUpdate(
+            id,
+            {
+                type,
+                name,
+                price,
+                description,
+                img1,
+                img2,
+            },
+            { new: true }
+        );
 
         return NextResponse.json({ message: 'Product updated successfully', product: updatedProduct }, { status: 200 });
     } catch (error) {
