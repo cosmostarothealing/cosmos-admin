@@ -98,6 +98,9 @@ export default function ProductsPage() {
 
                       {/* Product Details */}
                       <h2 className="text-xl font-semibold text-gray-800 truncate">
+                        {product.type}
+                      </h2>
+                      <h2 className="text-xl font-semibold text-gray-800 truncate">
                         {product.name}
                       </h2>
                       <p className="text-lg font-bold text-g2 mt-1">
