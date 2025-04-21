@@ -137,8 +137,9 @@ export default function ProductDetailPage() {
               <option value="Tumble Stone">Tumble Stone</option>
               <option value="Raw Stone">Raw Stone</option>
               <option value="Reiki Stone">Reiki Stone</option>
-              <option value="Worry Bracelets">Worry Bracelets</option>
+              <option value="Worry stone">Worry stone</option>
               <option value="Spell Candles">Spell Candles</option>
+              <option value="Bracelets">Bracelets</option>
             </select>
           </div>
 

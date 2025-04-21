@@ -5,7 +5,7 @@ const otherProductSchema = new Schema(
     type: {
       type: String,
       required: [true, "Product type is required"],
-      enum: ["Tumble stone", "Raw stone", "Reiki stone", "Worry bracelets", "Spell candles"],
+      enum: ["Tumble stone", "Raw stone", "Reiki stone", "Worry Stone", "Spell candles", "Bracelets"],
     },
     name: {
       type: String,
