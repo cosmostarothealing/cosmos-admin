@@ -127,9 +127,9 @@ export default function ProductDetailPage() {
               Product Type
             </label>
             <select
-              value={product.productType}
+              value={product.type}
               onChange={(e) =>
-                setProduct({ ...product, productType: e.target.value })
+                setProduct({ ...product, type: e.target.value })
               }
               className="w-full px-4 py-3 border border-g2 rounded-lg"
               required
