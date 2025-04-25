@@ -87,7 +87,7 @@ export default function AddProduct() {
               <option value="Tumble stone">Tumble stone</option>
               <option value="Raw stone">Raw stone</option>
               <option value="Reiki stone">Reiki stone</option>
-              <option value="Worry stone">Worry stone</option>
+              <option value="Worry Stone">Worry stone</option>
               <option value="Spell candles">Spell candles</option>
               <option value="Bracelets">Bracelets</option>
             </select>
