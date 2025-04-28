@@ -139,6 +139,8 @@ export default function ProductDetailPage() {
               <option value="Reiki Stone">Reiki Stone</option>
               <option value="Worry Stone">Worry stone</option>
               <option value="Spell Candles">Spell Candles</option>
+              <option value="Bath salt">Bath salt</option>
+              <option value="Spell Jars">Spell Jars</option>
               <option value="Bracelets">Bracelets</option>
             </select>
           </div>
